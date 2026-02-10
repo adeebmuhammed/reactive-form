@@ -1,0 +1,71 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="form-card">
+  <h2 class="section-title">Contact Information</h2>
+
+  <div class="grid" formGroupName="contact_information">
+    <div class="field">
+      <label>First Name *</label>
+      <input
+        formControlName="first_name"
+        [class.invalid]="isInvalid('contact_information.first_name')"
+      />
+      <small *ngIf="isInvalid('contact_information.first_name')">
+        {{ getError("contact_information.first_name") }}
+      </small>
+    </div>
+
+    <div class="field">
+      <label>Last Name *</label>
+      <input
+        formControlName="last_name"
+        [class.invalid]="isInvalid('contact_information.last_name')"
+      />
+      <small *ngIf="isInvalid('contact_information.last_name')">
+        {{ getError("contact_information.last_name") }}
+      </small>
+    </div>
+
+    <div class="field">
+      <label>Email *</label>
+      <input
+        type="email"
+        formControlName="email"
+        [class.invalid]="isInvalid('contact_information.email')"
+      />
+      <small *ngIf="isInvalid('contact_information.email')">
+        {{ getError("contact_information.email") }}
+      </small>
+    </div>
+
+    <div class="field">
+      <label>Phone *</label>
+      <input
+        formControlName="phone"
+        mask="(000) 000-0000"
+        [class.invalid]="isInvalid('contact_information.phone')"
+      />
+      <small *ngIf="isInvalid('contact_information.phone')">
+        Phone number is required
+      </small>
+    </div>
+  </div>
+
+  <app-address-form title="Billing Address" [group]="billingAddress">
+  </app-address-form>
+
+  <div class="checkbox-row">
+    <input
+      #sameAs
+      type="checkbox"
+      (change)="toggleSameAsBilling(sameAs.checked)"
+    />
+    <label>Same as Billing Address?</label>
+  </div>
+
+  <app-address-form title="Shipping Address" [group]="shippingAddress">
+  </app-address-form>
+
+  <div class="actions">
+    <button type="button" class="btn cancel">Cancel</button>
+    <button type="submit" class="btn save">Save</button>
+  </div>
+</form>
