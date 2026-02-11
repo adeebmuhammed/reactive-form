@@ -30,6 +30,17 @@ export function phoneValidator(
 ): ValidationErrors | null {
   if (!control.value) return null;
 
-  const isValid = REGEX.PHONE.test(control.value);
-  return isValid ? null : { invalidPhone: true };
+  const value = control.value;
+
+  const sameDigitPattern = /^(\d)\1{9}$/;
+
+  if (!REGEX.PHONE.test(value)) {
+    return { invalidPhone: true };
+  }
+
+  if (sameDigitPattern.test(value)) {
+    return { invalidPhone: true };
+  }
+
+  return null;
 }

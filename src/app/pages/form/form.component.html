@@ -44,7 +44,7 @@
         [class.invalid]="isInvalid('contact_information.phone')"
       />
       <small *ngIf="isInvalid('contact_information.phone')">
-        Phone number is required
+        {{ getError("contact_information.phone") }}
       </small>
     </div>
   </div>

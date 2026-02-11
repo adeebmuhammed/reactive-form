@@ -3,5 +3,5 @@ export const REGEX = {
     NAME:  /^[A-Za-z ]+$/,
     EMAIL: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
     LONG_NAME: /^[A-Za-z0-9 ]{1,25}$/,
-    PHONE: /^[0-9]{10,15}$/
+    PHONE: /^[0-9]{10}$/
 }

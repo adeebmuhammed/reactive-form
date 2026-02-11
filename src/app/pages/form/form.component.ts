@@ -43,7 +43,7 @@ export class FormComponent {
           [Validators.required, Validators.minLength(3), nameValidator],
         ],
         email: ['', [Validators.required, Validators.email, emailValidator]],
-        phone: ['', [Validators.required, phoneValidator]], // (999) 999-9999
+        phone: ['', [Validators.required, Validators.minLength(10),phoneValidator]], // (999) 999-9999
       }),
       billing_address: this.addressGroup(),
       shipping_address: this.addressGroup(),
@@ -75,6 +75,8 @@ export class FormComponent {
     if (control.errors['email']) return 'Enter a valid email address';
     if (control.errors['minlength'])
       return `Minimum ${control.errors['minlength'].requiredLength} characters required`;
+    if (control.errors['maxLength'])
+      return `Maximum ${control.errors['maxLength'].requiredLength} characters Allowed`;
     if (control.errors['invalidName']) return 'Only letters are allowed';
     if (control.errors['invalidZip']) return 'Invalid zip code';
     if (control.errors['invalidEmail']) return 'Invalid email address';
